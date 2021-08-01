@@ -1,18 +1,18 @@
 # Dockerfile for React client
 
 #Build react client
-FROM node:current-alpine3.11
+FROM node:16-slim
 
-# Create App Direcotry
-RUN mkdir -p /use/src/app
+# Working directory
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY ./package.json ./
+COPY ./yarn.lock ./
 
 # Install dependencies
-RUN npm install --silent
+RUN yarn install
 
-# Copy local files to app foloder
+# Copy local files to app folder
 COPY . .
 
 EXPOSE 5000

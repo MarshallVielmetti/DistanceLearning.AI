@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+    frontend:
+        build: 
+            context: ./frontend
+            dockerfile: Dockerfile
+        ports:
+            - '3000:3000'
+        container_name: frontend
+        stdin_open: true
+        networks:
+            - application
+        volumes:
+            - ./frontend/:/usr/src/app
+            - /usr/src/app/node_modules
+    backend:
+        build: 
+            context: ./backend
+        ports:
+            - '5000:5000'
+        container_name: backend
+        networks: 
+            - application
+        volumes: 
+            - ./backend:/usr/src/app
+            - /usr/src/app/node_modules
+networks:
+    application:
+        driver: bridge
+
