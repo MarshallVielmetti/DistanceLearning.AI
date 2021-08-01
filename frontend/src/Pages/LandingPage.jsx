@@ -1,9 +1,10 @@
 import React from 'react'
+import NoAuthNav from 'Components/NoAuthNav/NoAuthNav'
 
 const LandingPage = () => {
     return (
         <div>
-            This is the home page.
+            <NoAuthNav />
         </div>
     )
 }

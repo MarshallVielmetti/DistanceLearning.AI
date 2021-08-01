@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const StyledDiv = styled.div`
     color: ${props => props.theme.secondary};
-    font-family: ${props => props.theme.defaultFonts}
+    font-family: ${props => props.theme.defaultFonts};
 `
 
 const Error404Page = () => {
