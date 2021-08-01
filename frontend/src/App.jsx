@@ -1,7 +1,10 @@
-function App() {
-  return (
-    <div>This is sdf.</div>
-  );
-}
+import React, { Component } from 'react'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
-export default App;
+export default class App extends Component {
+  render() {
+    return (
+      <div></div>
+    )
+  }
+}
