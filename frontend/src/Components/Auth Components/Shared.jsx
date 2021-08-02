@@ -12,6 +12,7 @@ const Container = styled.div`
   border: 5px solid ${(props) => props.theme.highlight};
   color: white;
   align-items: center;
+  min-width: 300px;
 `;
 
 const Header = styled.h1`
@@ -21,13 +22,6 @@ const Header = styled.h1`
   color: ${(props) => props.theme.offWhite};
   font-family: ${(props) => props.theme.titleFonts};
   margin: 30px 0;
-`;
-
-const InputTag = styled.div`
-  width: 10px;
-  height: auto;
-  background-color: ${(props) => props.theme.highlight};
-  border: none;
 `;
 
 const StyledInput = styled.input`
@@ -49,6 +43,13 @@ const InputContainer = styled.div`
   &:hover ${StyledInput} {
     background-color: ${(props) => props.theme.offWhite};
   }
+`;
+
+const InputTag = styled.div`
+  width: 10px;
+  height: auto;
+  background-color: ${(props) => props.theme.highlight};
+  border: none;
 `;
 
 const SignupPageContainer = styled.div`
@@ -114,6 +115,28 @@ const TeacherCheckbox = styled.input`
   cursor: pointer;
 `;
 
+const ForgotPassword = styled.button`
+  background-color: transparent;
+  border: none;
+  color: ${(props) => props.theme.offWhite};
+  font-size: 0.8rem;
+  cursor: pointer;
+  &:hover {
+    color: ${(props) => props.theme.darkWhite};
+  }
+`;
+
+const ForgotSignin = styled(Link)`
+  text-decoration: none;
+  color: ${(props) => props.theme.offWhite};
+  font-size: 1.2rem;
+  font-family: ${(props) => props.theme.defaultFonts};
+  cursor: pointer;
+  &:hover {
+    color: ${(props) => props.theme.darkWhite};
+  }
+`;
+
 export {
   Container,
   SignupPageContainer,
@@ -128,4 +151,6 @@ export {
   ActionButton,
   ActionRows,
   TeacherCheckbox,
+  ForgotPassword,
+  ForgotSignin,
 };

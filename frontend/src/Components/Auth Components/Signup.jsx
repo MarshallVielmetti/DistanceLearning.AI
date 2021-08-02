@@ -12,6 +12,7 @@ import {
   ActionButton,
   ActionRows,
   TeacherCheckbox,
+  ForgotSignin,
 } from "Components/Auth Components/Shared";
 import { Spacer } from "Components/Shared";
 
@@ -87,6 +88,13 @@ const Signup = () => {
           <Spacer num="1" />
           <ActionButton onClick={handleSubmit}>Create Account</ActionButton>
           <Spacer num="3" />
+        </ActionRows>
+        <Spacer />
+        or
+        <ActionRows>
+          <Spacer />
+          <ForgotSignin to="/sign-in">Sign In</ForgotSignin>
+          <Spacer />
         </ActionRows>
         <Spacer num="2" />
       </ActionContainer>
