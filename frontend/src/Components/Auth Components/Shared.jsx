@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { AiOutlineMail } from "react-icons/ai";
+import { BsArrowLeft } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.darkSecondary};
@@ -23,23 +24,18 @@ const Header = styled.h1`
 `;
 
 const InputTag = styled.div`
-  width: 18%;
-  height: 100%;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const StyledEmail = styled(AiOutlineMail)`
-  font-size: 2rem;
-  color: white;
+  width: 10px;
+  height: auto;
+  background-color: ${(props) => props.theme.highlight};
+  border: none;
 `;
 
 const StyledInput = styled.input`
   flex-grow: 1;
-  height: 100%;
+  height: auto;
+  padding: none;
+  margin: none;
+  border: none;
 `;
 
 const InputContainer = styled.div`
@@ -48,11 +44,11 @@ const InputContainer = styled.div`
   background-color: white;
   border-radius: 2px;
   margin: 10px 0;
-  &:hover ${InputTag} {
-    width: 22%;
-  }
   display: flex;
   flex-direction: row;
+  &:hover ${StyledInput} {
+    background-color: ${(props) => props.theme.offWhite};
+  }
 `;
 
 const SignupPageContainer = styled.div`
@@ -61,7 +57,61 @@ const SignupPageContainer = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: ${(props) => props.theme.secondary};
-  align-items: center; ;
+  align-items: center;
+`;
+
+const BackContainer = styled.div`
+  width: 100%;
+  position: static;
+`;
+
+const BackLink = styled(Link)`
+  position: absolute;
+  height: 40px;
+  width: 50px;
+  padding-left: 10px;
+  justify-self: right;
+`;
+
+const BackArrow = styled(BsArrowLeft)`
+  font-size: 200%;
+  color: ${(props) => props.theme.offWhite};
+`;
+
+const ActionButton = styled.button`
+  background-color: ${(props) => props.theme.highlight};
+  width: 100px;
+  height: 50px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-family: ${(props) => props.theme.defaultFonts};
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props) => props.theme.darkHighlight};
+  }
+`;
+
+const ActionContainer = styled.div`
+  margin: 30px 10px 10px 10px;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ActionRows = styled.div`
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const TeacherCheckbox = styled.input`
+  cursor: pointer;
 `;
 
 export {
@@ -70,6 +120,12 @@ export {
   Header,
   InputContainer,
   InputTag,
-  StyledEmail,
   StyledInput,
+  BackLink,
+  BackContainer,
+  BackArrow,
+  ActionContainer,
+  ActionButton,
+  ActionRows,
+  TeacherCheckbox,
 };
