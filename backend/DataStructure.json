@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "528ba7691738025d11aab772",
+    "email": "email@example.com",
+    "emailConfirmed": true,
+    "password": "encrypted string",
+    "accountType": "teacher/student/admin?",
+    "activeClass": "either class they created or class they're in",
+    "name": "Display purposes."
+  },
+  {
+    "_id": "528ba7691738025d11aab772",
+    "className": "Mike Schroeder's Biology",
+    "teacher": "teacher ID",
+    "students": ["Id1", "ID2", "ID3", "ID4"]
+  }
+]

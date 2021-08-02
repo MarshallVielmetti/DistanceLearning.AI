@@ -1,0 +1,23 @@
+POST http://localhost:3000/API/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "email@example.com",
+    "password": "passwordpassword"
+}
+
+###
+
+POST http://localhost:3000/API/create_user HTTP/1.1
+content-type: application/json
+
+{
+    "email": "email@2example.com",
+    "password": "passwordpassword",
+    "accountType": "Teacher"
+}
+
+###
+
+POST http://localhost:3000/API/delete_user HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGV4YW1wbGUuY29tIiwiYWNjb3VudFR5cGUiOiJUZWFjaGVyIiwiaWF0IjoxNjI3OTI0NDc4LCJleHAiOjE2MjgwMTA4Nzh9.r6W8hNcqZKAlEfAS7nUJZmzwTaGlSjOKLBG_4dQdFeU
