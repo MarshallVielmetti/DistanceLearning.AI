@@ -1,3 +1,5 @@
+// THIS IS VERY MUCH NOT ACTUALLY DONE YET I JUST COPY PASTED THIS SHIT
+
 import React from "react";
 import styled from "styled-components";
 import { Spacer } from "Components/Shared";
@@ -78,7 +80,7 @@ const TeacherClass = () => {
         <QuitButton onClick={(e) => QuitClass()}>Quit</QuitButton>
       </StartContainer>
 
-      <CodeToJoin>{"Code to Join"}</CodeToJoin>
+      <CodeToJoin>{"THIS SHIT COPY PASTED"}</CodeToJoin>
       <InfoSquareContainer />
       <Spacer />
       <RowContainer>

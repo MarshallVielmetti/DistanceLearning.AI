@@ -12,6 +12,7 @@ import {
   TeacherClass,
   TeacherStart,
   StudentHome,
+  StudentStart,
 } from "Pages";
 
 const DefaultTheme = {
@@ -43,7 +44,7 @@ export default class App extends Component {
             <Route path="/teacher/report" component={Error404Page} />
             {/* Student Routes */}
             <Route path="/student/home" component={StudentHome} />
-            <Route path="/student/start" component={Error404Page} />
+            <Route path="/student/start" component={StudentStart} />
             <Route path="/student/class" component={Error404Page} />
             <Route path="/student/report" component={Error404Page} />
             <Route component={Error404Page} />
