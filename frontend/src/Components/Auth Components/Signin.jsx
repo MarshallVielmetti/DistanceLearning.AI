@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 import {
   Container,
   Header,
@@ -20,8 +22,18 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const history = useHistory("");
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      const sendToken = `Bearer ${token}`;
+    }
+  });
+
   const handleSubmit = () => {
-    console.log("Submitted login form");
+    if (email !== "" && password !== "") {
+    }
   };
   return (
     <Container>

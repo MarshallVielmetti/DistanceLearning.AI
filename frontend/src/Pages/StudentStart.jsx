@@ -71,7 +71,6 @@ const StudentStart = () => {
         </TextContainer>
         <Spacer />
       </RowContainer>
-
       <Spacer />
     </Container>
   );

@@ -10,6 +10,7 @@ import TeacherStart from "Pages/TeacherStart";
 
 import StudentHome from "Pages/StudentHome";
 import StudentStart from "Pages/StudentStart";
+import StudentClass from "Pages/StudentClass";
 
 export {
   LandingPage,
@@ -22,4 +23,5 @@ export {
   TeacherClass,
   StudentHome,
   StudentStart,
+  StudentClass,
 };
