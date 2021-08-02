@@ -13,7 +13,11 @@ import {
   TeacherStart,
   StudentHome,
   StudentStart,
+  StudentClass,
 } from "Pages";
+
+import TeacherRoute from "Components/Protected Route/TeacherRoute";
+import StudentRoute from "Components/Protected Route/StudentRoute";
 
 const DefaultTheme = {
   primary: "white",
@@ -38,15 +42,20 @@ export default class App extends Component {
             <Route exact path="/sign-up" component={SignupPage} />
             <Route exact path="/sign-in" component={SigninPage} />
             {/* Teacher Routes */}
-            <Route path="/teacher/home" component={TeacherHome} />
-            <Route path="/teacher/start" component={TeacherStart} />
-            <Route path="/teacher/class" component={TeacherClass} />
-            <Route path="/teacher/report" component={Error404Page} />
+            <TeacherRoute>
+              <Route path="/teacher/home" component={TeacherHome} />
+              <Route path="/teacher/start" component={TeacherStart} />
+              <Route path="/teacher/class" component={TeacherClass} />
+              <Route path="/teacher/report" component={Error404Page} />
+            </TeacherRoute>
             {/* Student Routes */}
-            <Route path="/student/home" component={StudentHome} />
-            <Route path="/student/start" component={StudentStart} />
-            <Route path="/student/class" component={Error404Page} />
-            <Route path="/student/report" component={Error404Page} />
+            <StudentRoute>
+              <Route path="/student/home" component={StudentHome} />
+              <Route path="/student/start" component={StudentStart} />
+              <Route path="/student/class" component={StudentClass} />
+              <Route path="/student/report" component={Error404Page} />
+            </StudentRoute>
+            <Route exact path="/test" component={TeacherRoute} />
             <Route component={Error404Page} />
           </Switch>
         </Router>
