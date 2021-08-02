@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import NoAuthNav from "Components/NoAuthNav/NoAuthNav";
 
-import { LandingPage, Error404Page, SignupPage, SigninPage } from "Pages";
+import {
+  LandingPage,
+  Error404Page,
+  SignupPage,
+  SigninPage,
+  AboutPage,
+} from "Pages";
 
 const DefaultTheme = {
   primary: "white",
@@ -23,6 +30,7 @@ export default class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={LandingPage} />
+            <Route exact path="/about" component={AboutPage} />
             <Route exact path="/sign-up" component={SignupPage} />
             <Route exact path="/sign-in" component={SigninPage} />
             <Route component={Error404Page} />
