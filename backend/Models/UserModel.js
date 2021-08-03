@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   emailConfirmed: Boolean,
   password: { type: String, required: true },
   accountType: String,
-  activeClass: String,
+  activeClass: { type: mongoose.Schema.Types.ObjectId, ref: "Class" },
   name: String,
   attention: [Number],
 });

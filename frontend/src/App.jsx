@@ -42,41 +42,49 @@ export default class App extends Component {
             <Route exact path="/sign-in" component={SigninPage} />
             {/* Teacher Routes */}
             <ProtectedRoute
+              exact
               accountType="Student"
               path="/student/home"
               component={StudentHome}
             />
             <ProtectedRoute
+              exact
               accountType="Student"
               path="/student/start"
               component={StudentStart}
             />
             <ProtectedRoute
+              exact
               accountType="Student"
               path="/student/class"
               component={StudentClass}
             />
             <ProtectedRoute
+              exact
               accountType="Student"
               path="/student/report"
               component={Error404Page}
             />
             <ProtectedRoute
+              exact
               accountType="Teacher"
               path="/teacher/home"
               component={TeacherHome}
             />
             <ProtectedRoute
+              exact
               accountType="Teacher"
               path="/teacher/start"
               component={TeacherStart}
             />
             <ProtectedRoute
+              exact
               accountType="Teacher"
               path="/teacher/class"
               component={TeacherClass}
             />
             <ProtectedRoute
+              exact
               accountType="Teacher"
               path="/teacher/report"
               component={Error404Page}

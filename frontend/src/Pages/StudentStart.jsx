@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
+
 import styled from "styled-components";
 import WebcamComponent from "Components/Webcam/WebcamComponent";
 import { Spacer } from "Components/Shared";
@@ -66,7 +68,7 @@ const StudentStart = () => {
         <WebcamComponent />
         <Spacer />
         <TextContainer>
-          <Header>Class Code</Header>
+          <Header> {"Class ID"} </Header>
           <Header>Class Name</Header>
         </TextContainer>
         <Spacer />

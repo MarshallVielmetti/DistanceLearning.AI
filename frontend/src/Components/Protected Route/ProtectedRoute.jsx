@@ -38,7 +38,13 @@ const ProtectedRoute = (props) => {
 
   const Render = (props) => {
     if (auth) {
-      return <Route exact path={props.path} component={props.component} />;
+      return (
+        <Route
+          exact={props.exact}
+          path={props.path}
+          component={props.component}
+        />
+      );
     } else {
       return <div>Something went seriously wrong....</div>;
     }
