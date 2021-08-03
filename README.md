@@ -30,5 +30,20 @@ Run all the processes seperately. Somewhat of a pain, but does give greater cont
 
 ### Step 1
 
-Use Ctrl+` to open your VSCode terminal. Split it into three different terminals by rightclicking on the 'powershell' and clicking 'Split Terminal' two times.
-In each terminal, type '
+Use Ctrl+\` to open your VSCode terminal. Split it into three different terminals by rightclicking on the 'powershell' and clicking 'Split Terminal' two times. We will now enter each different directory, one in each terminal. Do this by typing `cd frontend`, `cd backend`, and `cd API` in each terminal. (Note: As of right now, the API doesn't exist. It will hopefully soon though.)
+
+### Step 2
+
+Now we need to install all the dependencies. If you don't have yarn (or npm ig)installed, do that now. Also make sure you have a recent version of python installed.
+
+In the `frontend` terminal, type `yarn install` (or npm install if you don't use yarn for some reason). Type the same thing in the `backend` terminal.
+
+The Flask API is slightly more work because first you need to create and enter a python virtual environment. To create an environment, type `py -m venv ./venv`. Wait for this process to complete, the start the virtual environment by typing `./venv/Scripts/Activate.ps1`. Once the virtual environment has started, install the dependencies with `pip install -r requirements.txt`.
+
+You might have to install pip, update python, or add it to path. Also posssible that you will have to type `python -m venv ./venv` instead of py.
+
+### Step 3
+
+Now to start the different parts.
+In the frontend, type `yarn start`. Do the same in the backend. In the API, type `py app.py`.
+Now everything should be running.
