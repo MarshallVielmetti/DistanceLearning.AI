@@ -14,11 +14,11 @@ This method is easier, but can be less ideal for development depending on your s
 
 However, using the docker environment will allow you to run all the different parts of the app with one command. Although the routing will probably be configured for the other environment because I'm doing most of the dev on a windows computer...
 
-# Step 1.
+### Step 1
 
 Install [DockerDesktop](https://www.docker.com/products/docker-desktop). Follow all instructions then continue to step 2.
 
-# Step 2.
+### Step 2
 
 From the root of the repository, run 'docker-compose up'
 
