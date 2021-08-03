@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -39,7 +39,12 @@ const NameTextbox = styled.input`
 const CreateSession = () => {
   const [className, setClassName] = useState("");
 
-  const CreateClass = () => {
+  useEffect(() => {
+    async function fetchClass() {}
+    fetchClass();
+  }, []);
+
+  const CreateClass = async () => {
     console.log("CREATING CLAS");
   };
 

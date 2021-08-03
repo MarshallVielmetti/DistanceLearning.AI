@@ -104,6 +104,21 @@ app.post("/API/authenticate", authenticateToken(), async (req, res) => {
   res.status(200).send("Valid Token");
 });
 
+app.post("/API/check_class_status", authenticateToken(), async (req, res) => {
+  User.findOne({ email: req.user.email }, async function (err, user) {
+    if (err) throw err;
+    if (user !== null) {
+      if (user.activeClass !== null) {
+        res.status(303).send({ classId: user.activeClass._id });
+      } else {
+        res.sendStatus(200);
+      }
+    } else {
+      res.status(400).send("User does not exist.");
+    }
+  });
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
