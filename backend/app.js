@@ -17,6 +17,14 @@ const app = express();
 app.set("view engine", "jade");
 app.use(express.json());
 
+app.use(
+  express.json({
+    type: ["application/json", "text/plain"],
+  })
+);
+
+app.use(cors()); //REMOVE FOR PRODUCTION
+
 //ExpressAPI
 //gAZu6GcKAfbATu66
 const MONGO_CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING;
@@ -64,13 +72,14 @@ app.post("/API/login", async (req, res) => {
             { expiresIn: "1d" }
           );
 
-          res.status(200).send({ token: accessToken });
+          res.status(200).json({ token: accessToken });
         } else {
           //Wrong Password
           res.status(401).send("Incorrect password.");
         }
       });
     } else {
+      console.log(req.body);
       res.status(400).send("User does not exist.");
     }
   });

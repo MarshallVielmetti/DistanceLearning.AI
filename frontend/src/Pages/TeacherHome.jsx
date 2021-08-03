@@ -3,6 +3,8 @@ import CreateSession from "Components/Create Session/CreateSession";
 import styled from "styled-components";
 import { Spacer } from "Components/Shared";
 
+import GetPayload from "Components/Protected Route/GetPayload";
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -24,10 +26,11 @@ const TitleText = styled.h1`
 `;
 
 const TeacherHome = () => {
+  const email = GetPayload(sessionStorage.getItem("token")).email.split("@")[0];
   return (
     <Container>
       <ColumnContainer>
-        <TitleText>Welcome, {"Name"}</TitleText>
+        <TitleText>Welcome, {email}</TitleText>
       </ColumnContainer>
       <Spacer />
       <ColumnContainer>
