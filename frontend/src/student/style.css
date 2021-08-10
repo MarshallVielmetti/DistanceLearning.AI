@@ -1,0 +1,48 @@
+.title {
+  font-family: Montserrat, Archivo, sans-serif;
+}
+.body {
+  font-family: Segoe UI, sans-serif;
+}
+#container {
+  margin: 0px auto;
+  width: 700px;
+  height: 700px;
+  border: 4px #3b3a39 solid;
+}
+
+#videoElement {
+  width: 700px;
+  height: 700px;
+  background-color: #292828;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1em;
+  border: #333 1px solid;
+  font-family: Segoe UI, sans-serif;
+
+  grid-auto-rows: minmax(
+    500px,
+    auto
+  ); /* min is 100. max is letting the content stretch. */
+}
+
+/* you can delete this if you want */
+.wrapper > div:nth-child(odd) {
+  background: #eee;
+}
+.nested {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  padding: 1em;
+}
+
+@media screen and (max-width: 600px) {
+  /*this makes the two columns to be on top of each oter if the screen is <600px wide */
+  .column {
+    width: 100%;
+  }
+}

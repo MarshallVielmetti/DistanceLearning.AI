@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> Student Home</title>
+    <link rel="stylesheet" href="style.css" />
+<body>
+    <h2 class="title"> Home</h2>
+    <br>
+    <div class = "body" style="text-align:center"> 
+    <h3> Welcome #user ! </h3>
+
+    
+    <img src= undraw_team.svg> 
+    <br>
+    <br>
+    <form action=http://127.0.0.1:5500/frontend/public/student/waitingRoom.html>
+        <!--insert page to go to after "submit"-->
+        <label for="sessionMenu"> Join a Session: </label>
+        <input type="text" id="joinCode" name="joinCode">
+        <select id="sessionMenu" name="" onchange="selectValue(event)">
+            <!-- what is 'name' vs id?-->
+            <option value = ""> </option>
+        </option><option value="code1"> #recentClass </option> <!-- substitue "code1" and #recentClass for actual codes.-->
+            <option value="code2"> #code2 </option>
+            <option value="code3"> #code3 </option>
+            <option value="code4"> #code4 </option>
+            <option value="code5"> #code5 </option> <!-- note t here is not quotes-->
+        </select>
+        <br>
+        <br>
+
+        <input type="submit" value="join">
+    </form>
+
+</div>
+</body>
+<script src = script.js> </script>
+</head>
+
+</html>
