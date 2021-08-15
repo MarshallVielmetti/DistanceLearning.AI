@@ -1,13 +1,15 @@
-const express = require("express"),
-  path = require("path"),
-  jade = require("jade"),
-  mongoose = require("mongoose"),
-  jwt = require("jsonwebtoken"),
-  cors = require("cors"),
-  User = require("./Models/UserModel"),
-  Class = require("./Models/ClassModel"),
-  { v4: uuidv4 } = require("uuid");
-const { access } = require("fs");
+import mongoose from "mongoose"
+import jade from "jade"
+import express from "express"
+import jwt from "jsonwebtoken"
+import cors from "cors"
+import {access} from "fs"
+import {uuidv4 as v4 } from "uuid"
+
+import User from "./Models/UserModel"
+import Class from "./Models/ClassModel"
+
+
 
 require("dotenv").config();
 
@@ -27,6 +29,7 @@ app.use(cors()); //REMOVE FOR PRODUCTION
 
 //ExpressAPI
 //gAZu6GcKAfbATu66
+
 const MONGO_CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING;
 mongoose.connect(MONGO_CONNECTION_STRING, {
   useNewUrlParser: true,

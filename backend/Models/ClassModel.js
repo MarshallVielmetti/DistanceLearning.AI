@@ -1,5 +1,6 @@
-const mongoose = require("mongoose"),
-  Schema = mongoose.Schema;
+import mongoose from "mongoose"
+
+const Schema = mongoose.Schema
 
 const ClassSchema = new Schema({
   className: String,
@@ -7,4 +8,6 @@ const ClassSchema = new Schema({
   students: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
-module.exports = mongoose.model("Class", ClassSchema);
+const Class =  mongoose.model("Class", ClassSchema);
+
+export default Class
