@@ -134,4 +134,4 @@ app.use(function (err, req, res, next) {
   console.log(err);
 });
 
-module.exports = app;
+export default app

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import WebcamComponent from "Components/Webcam/WebcamComponent";
+import MLWrapper from "Components/MachineLearning/MLWrapper";
 import { Spacer } from "Components/Shared";
 
 const Container = styled.div`
@@ -67,7 +67,7 @@ const StudentClass = () => {
       </RowContainer>
       <RowContainer>
         <Spacer />
-        <WebcamComponent />
+        <MLWrapper />
         <Spacer />
         <DataColumnContainer>DATA GOES HERE</DataColumnContainer>
         <Spacer />

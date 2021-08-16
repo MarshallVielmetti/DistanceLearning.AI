@@ -3,9 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "transpile": "babel ./server --out-dir dist-server"
   },
+  "type": "module",
   "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
@@ -17,6 +22,13 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.5",
     "morgan": "~1.9.1",
+    "nodemon": "^2.0.12",
+    "rimraf": "^3.0.2",
     "uuid": "^8.3.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
