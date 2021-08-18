@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> Student Home</title>
+
+<body>
+    <h2 align="left"> Home</h2>
+    <br>
+    <h3> Welcome #user ! </h3>
+
+
+    <form action=http://127.0.0.1:5500/frontend/public/studentWaitingRoom.html>
+        <!--insert page to go to after "submit"-->
+        <label for="sessionMenu"> Join a Session: </label>
+        <input type="text" id="joinCode" name="joinCode">
+        <select id="sessionMenu" name="session">
+            <!-- what is 'name' vs id?-->
+            <option value="code1"> #recentClass </option> <!-- substitue "code1" and #recentClass for actual codes.-->
+            <option value="code2"> #recentClass </option>
+            <option value="code3"> #recentClass </option>
+            <option value="code4"> recentClass </option>
+            <option value="code5"> #recentClass </option> <!-- note t here is not quotes-->
+        </select>
+        <br>
+        <br>
+
+        <input type="submit" value="submit">
+    </form>
+</body>
+</head>
+
+</html>
