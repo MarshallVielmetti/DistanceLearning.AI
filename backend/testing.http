@@ -2,11 +2,11 @@ POST http://localhost:5000/API/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "email@example.com",
-    "password": "passwordpassword"
+    "email": "teacher@example.com",
+    "password": "password"
 }
 
-###
+### 
 
 POST http://localhost:5000/API/create_user HTTP/1.1
 content-type: application/json
