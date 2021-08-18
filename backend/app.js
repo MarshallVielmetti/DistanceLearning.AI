@@ -1,15 +1,13 @@
-import mongoose from "mongoose"
-import jade from "jade"
-import express from "express"
-import jwt from "jsonwebtoken"
-import cors from "cors"
-import {access} from "fs"
-import {uuidv4 as v4 } from "uuid"
-
-import User from "./Models/UserModel"
-import Class from "./Models/ClassModel"
-
-
+const express = require("express"),
+  jade = require("jade"),
+  bcrypt = require("bcrypt"),
+  mongoose = require("mongoose"),
+  jwt = require("jsonwebtoken"),
+  cors = require("cors"),
+  User = require("./Models/UserModel"),
+  Class = require("./Models/ClassModel"),
+  { error } = require("console"),
+  { v4: uuidv4 } = require("uuid");
 
 require("dotenv").config();
 
@@ -30,15 +28,14 @@ app.use(cors()); //REMOVE FOR PRODUCTION
 //ExpressAPI
 //gAZu6GcKAfbATu66
 
-const MONGO_CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING;
-mongoose.connect(MONGO_CONNECTION_STRING, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// const MONGO_CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING;
+// mongoose.connect(MONGO_CONNECTION_STRING, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 app.post("/API/create_user", async (req, res) => {
   User.findOne({ email: req.body.email }, async function (err, user) {
-    if (err) throw err;
     if (user === null) {
       var newUser = new User({
         email: req.body.email,
@@ -62,30 +59,50 @@ app.post("/API/create_user", async (req, res) => {
 
 app.post("/API/login", async (req, res) => {
   console.log("Received req");
-  User.findOne({ email: req.body.email }, async function (err, user) {
-    if (err) throw err;
-    if (user !== null) {
-      user.comparePassword(req.body.password, function (err, isMatch) {
-        if (err) throw err;
+  // User.findOne({ email: req.body.email }, async function (err, user) {
+  //   if (err) {
+  //     console.log(err);
+  //   }
 
-        if (isMatch) {
-          const accessToken = jwt.sign(
-            { email: req.body.email, accountType: user.accountType },
-            process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: "1d" }
-          );
+  //   console.log("LOGGIN USER " + user);
+  //   if (user !== null && user !== undefined) {
+  //     user
+  //       .comparePassword(req.body.password, function (err, isMatch) {
+  //         if (err) {
+  //           console.log(err);
+  //         }
 
-          res.status(200).json({ token: accessToken });
-        } else {
-          //Wrong Password
-          res.status(401).send("Incorrect password.");
-        }
-      });
-    } else {
-      console.log(req.body);
-      res.status(400).send("User does not exist.");
-    }
-  });
+  //         if (isMatch) {
+  //           const accessToken = jwt.sign(
+  //             { email: req.body.email, accountType: user.accountType },
+  //             process.env.ACCESS_TOKEN_SECRET,
+  //             { expiresIn: "1d" }
+  //           );
+
+  //           res.status(200).json({ token: accessToken });
+  //         } else {
+  //           //Wrong Password
+  //           res.status(401).send("Incorrect password.");
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } else {
+  //     console.log(req.body);
+  //     res.status(400).send("User does not exist.");
+  //   }
+  // }).catch((err) => {
+  //   console.log(err);
+  // });
+
+  const accessToken = jwt.sign(
+    { email: req.body.email, accountType: "Student" },
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: "1d" }
+  );
+
+  res.status(200).json({ token: accessToken });
 });
 
 function authenticateToken() {
@@ -108,18 +125,19 @@ app.post("/API/authenticate", authenticateToken(), async (req, res) => {
 });
 
 app.post("/API/check_class_status", authenticateToken(), async (req, res) => {
-  User.findOne({ email: req.user.email }, async function (err, user) {
-    if (err) throw err;
-    if (user !== null) {
-      if (user.activeClass !== null) {
-        res.status(303).send({ classId: user.activeClass._id });
-      } else {
-        res.sendStatus(200);
-      }
-    } else {
-      res.status(400).send("User does not exist.");
-    }
-  });
+  // User.findOne({ email: req.user.email }, async function (err, user) {
+  //   if (err) throw err;
+  //   if (user !== null) {
+  //     if (user.activeClass !== null) {
+  //       res.status(303).send({ classId: user.activeClass._id });
+  //     } else {
+  //       res.sendStatus(200);
+  //     }
+  //   } else {
+  //     res.status(400).send("User does not exist.");
+  //   }
+  // });
+  res.sendStatus(200);
 });
 
 // catch 404 and forward to error handler
@@ -134,4 +152,4 @@ app.use(function (err, req, res, next) {
   console.log(err);
 });
 
-export default app
+module.exports = app;
