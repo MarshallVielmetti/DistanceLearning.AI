@@ -3,7 +3,6 @@ import P5Wrapper from "react-p5-wrapper";
 import styled from "styled-components";
 
 import ObjectDetectionSketch from "Components/MachineLearning/ObjectDetectionSketch";
-import BasicWebcam from "Components/MachineLearning/BasicWebcam";
 
 const Container = styled.div`
   height: 720px;
