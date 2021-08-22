@@ -1,11 +1,8 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 const SALT_WORK_FACTOR = 10;
-
-
 
 const UserSchema = new Schema({
   email: { type: String, required: true, index: { unique: true } },
@@ -45,7 +42,4 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
   });
 };
 
-const User = mongoose.model("User", UserSchema);
-
-module.exports = User
-
+module.exports = mongoose.model("User", UserSchema);

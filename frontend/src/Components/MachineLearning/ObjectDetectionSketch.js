@@ -1,5 +1,5 @@
 import * as faceapi from "face-api.js";
-import "@tensorflow/tfjs";
+import * as tf from "@tensorflow/tfjs";
 import * as p5 from "p5";
 
 export default function sketch(p, dataHandler) {
