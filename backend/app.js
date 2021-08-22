@@ -7,7 +7,8 @@ const express = require("express"),
   User = require("./Models/UserModel"),
   Class = require("./Models/ClassModel"),
   { error } = require("console"),
-  { v4: uuidv4 } = require("uuid");
+  { v4: uuidv4 } = require("uuid"),
+  fs = require("fs");
 
 require("dotenv").config();
 
@@ -138,6 +139,17 @@ app.post("/API/check_class_status", authenticateToken(), async (req, res) => {
   //   }
   // });
   res.sendStatus(200);
+});
+
+app.post("/API/send_ML_data", async (req, res) => {
+  let rawdata = await fs.readFileSync("./ML/data.json");
+  let parsed = JSON.parse(rawdata);
+  parsed.push(req.body);
+
+  let strung = JSON.stringify(parsed);
+  fs.writeFileSync("./ML/data.json", strung);
+
+  console.log("Wrote Data");
 });
 
 // catch 404 and forward to error handler

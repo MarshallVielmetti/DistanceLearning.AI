@@ -1,9 +1,8 @@
 import * as faceapi from "face-api.js";
 import "@tensorflow/tfjs";
-
 import * as p5 from "p5";
 
-export default function sketch(p) {
+export default function sketch(p, dataHandler) {
   let capture = null;
   let faceDrawings = [];
 
@@ -36,10 +35,18 @@ export default function sketch(p) {
   };
 
   let ins = 0;
+  let capData = 0;
 
-  p.draw = async () => {
+  p.draw = function () {
     if (!capture) {
       return;
+    }
+
+    if (ins == 10) {
+      dataHandler(faceDrawings[0]);
+      ins = 0;
+    } else {
+      ins++;
     }
 
     p.background(255);
@@ -100,7 +107,7 @@ export default function sketch(p) {
     });
 
     faceapi
-      .detectAllFaces(capture.id(), new faceapi.TinyFaceDetectorOptions())
+      .detectAllFaces("video_element", new faceapi.TinyFaceDetectorOptions())
       .withFaceLandmarks(true)
       .then((data) => {
         showFaceDetectionData(data);
