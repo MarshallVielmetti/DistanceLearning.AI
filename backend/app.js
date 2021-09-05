@@ -101,7 +101,7 @@ app.post("/API/login", async (req, res) => {
   // res.status(200).json({ token: accessToken });
 });
 
-function authenticateToken() {
+function authenticateToken(routeType) {
   return (req, res, next) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1]; //Token portion of Bearer-Token
@@ -110,8 +110,19 @@ function authenticateToken() {
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) return res.status(403).send("Invalid Token");
-      req.user = user;
-      next();
+      if (routeType) {
+        if (user.accountType === routeType) {
+          req.user = user;
+          next();
+        } else {
+          res
+            .status(403)
+            .send("Resource Not Available for " + user.accountType + "s.");
+        }
+      } else {
+        req.user = user;
+        next();
+      }
     });
   };
 }
@@ -136,6 +147,8 @@ app.post("/API/check_class_status", authenticateToken(), async (req, res) => {
   res.sendStatus(200);
 });
 
+let num = 0;
+
 app.post("/API/send_ML_data", async (req, res) => {
   let rawdata = await fs.readFileSync("./ML/data.json");
   let parsed = JSON.parse(rawdata);
@@ -144,8 +157,99 @@ app.post("/API/send_ML_data", async (req, res) => {
   let strung = JSON.stringify(parsed);
   fs.writeFileSync("./ML/data.json", strung);
 
-  console.log("Wrote Data");
+  console.log("Wrote Data " + num);
+  num++;
+  res.sendStatus(200);
 });
+
+app.post(
+  "/API/push_attention",
+  authenticateToken("Student"),
+  async (req, res) => {
+    User.findOne({ email: req.body.email }, async function (err, user) {
+      if (err) {
+        console.log(err);
+      }
+
+      if (user) {
+        user.attention.push(req.body.attention);
+        user.save().then((success) => {
+          if (success) {
+            res.status(200).send("Successfully Added Attention");
+          } else {
+            res.status(400).send("Failed to Update User");
+          }
+        });
+      } else {
+        res.status(404).send("Failed to find user");
+      }
+    });
+  }
+);
+
+app.post(
+  "/API/get_class_attention",
+  authenticateToken("Teacher"),
+  async (req, res) => {
+    teacher_id = await User.findOne(
+      { email: req.body.email },
+      async function (err, user) {
+        if (err) console.log(err);
+
+        if (user) {
+          return user._id;
+        } else {
+          res.status(400).send("Failed to Find User");
+        }
+      }
+    );
+
+    class_data = await Class.findOne(
+      { teacher: teacher_id },
+      async function (err, class_data) {
+        if (err) console.log(err);
+
+        if (class_data) {
+          return class_data;
+        } else {
+          res.status(400).send("Failed to Find Class");
+        }
+      }
+    );
+
+    let return_arr = [];
+
+    class_data.students.forEach((student) => {
+      return_arr.push(student.name, student.attention);
+    });
+
+    res.status(200).json({ data_array: return_arr });
+  }
+);
+
+app.post(
+  "/API/create_class",
+  authenticateToken("Teacher"),
+  async (req, res) => {
+    has_class = await User.findOne(
+      { email: req.body.email },
+      async (err, user) => {
+        if (err) console.log(err);
+
+        if (user) {
+          if (user.activeClass) {
+            res
+              .status(406)
+              .send("Cannot Create Class: You Are Already Running a Class");
+          } else {
+          }
+        } else {
+          res.status(400).send("Failed to Find User");
+        }
+      }
+    );
+  }
+);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

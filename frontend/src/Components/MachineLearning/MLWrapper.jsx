@@ -5,13 +5,15 @@ import styled from "styled-components";
 import ObjectDetectionSketch from "Components/MachineLearning/ObjectDetectionSketch";
 import { data } from "@tensorflow/tfjs";
 
+import CameraComponent from "Components/MachineLearning/Camera";
+
 const Container = styled.div`
   height: 720px;
   width: 1080px;
 `;
 
 const sendData = (e, d, isFocus) => {
-  if (d != undefined) {
+  if (d !== undefined) {
     d.isFocus = isFocus;
     fetch("http://localhost:5000/API/send_ML_data", {
       method: "POST",
@@ -29,7 +31,8 @@ const MLWrapper = () => {
     <Container>
       <button onClick={(e) => sendData(e, data, true)}>SEND FOCUS</button>
       <button onClick={(e) => sendData(e, data, false)}>SEND NO FOCUS</button>
-      <P5Wrapper sketch={(p) => ObjectDetectionSketch(p, setData)} />
+      {/* <P5Wrapper sketch={(p) => ObjectDetectionSketch(p, setData)} /> */}
+      <CameraComponent />
     </Container>
   );
 };
