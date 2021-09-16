@@ -73,10 +73,13 @@ const CameraComponent = () => {
         flat_landmarks.push(pair["_x"]);
         flat_landmarks.push(pair["_y"]);
       }
-      //   console.log(flat_landmarks);
+
+      let test = [4, 5, 6, 77, 8, 52];
+      console.log(test);
+      console.log(flat_landmarks);
 
       try {
-        let attn_pred = await model.predict(flat_landmarks);
+        let attn_pred = await model.predict([4.3]);
         console.log(attn_pred);
         setData(data);
       } catch (err) {
