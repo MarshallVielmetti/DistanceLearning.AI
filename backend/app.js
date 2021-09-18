@@ -149,19 +149,6 @@ app.post("/API/check_class_status", authenticateToken(), async (req, res) => {
 
 let num = 0;
 
-app.post("/API/send_ML_data", async (req, res) => {
-  let rawdata = await fs.readFileSync("./ML/data.json");
-  let parsed = JSON.parse(rawdata);
-  parsed.push(req.body);
-
-  let strung = JSON.stringify(parsed);
-  fs.writeFileSync("./ML/data.json", strung);
-
-  console.log("Wrote Data " + num);
-  num++;
-  res.sendStatus(200);
-});
-
 app.post(
   "/API/push_attention",
   authenticateToken("Student"),

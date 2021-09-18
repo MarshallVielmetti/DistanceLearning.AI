@@ -1,6 +1,6 @@
 // THIS IS VERY MUCH NOT ACTUALLY DONE YET I JUST COPY PASTED THIS SHIT
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Spacer } from "Components/Shared";
 import InfoSquareContainer from "Components/Student Info Square/InfoSquareContainer";
@@ -66,6 +66,26 @@ const StartContainer = styled.div`
 `;
 
 const TeacherClass = () => {
+  const [code, setCode] = useState(null);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    let res = await fetch("http://localhost:5000/API/get_class_attention", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+    });
+
+    let theData = await res.json();
+    setData(theData);
+
+    setCode(theData.connectionString);
+  };
+
   const StartClass = () => {
     console.log("Starting Class");
   };
@@ -80,8 +100,8 @@ const TeacherClass = () => {
         <QuitButton onClick={(e) => QuitClass()}>Quit</QuitButton>
       </StartContainer>
 
-      <CodeToJoin>{"THIS SHIT COPY PASTED"}</CodeToJoin>
-      <InfoSquareContainer />
+      <CodeToJoin>{code}</CodeToJoin>
+      <InfoSquareContainer data={data} />
       <Spacer />
       <RowContainer>
         <StartButton onClick={(e) => StartClass()}>Start Class</StartButton>

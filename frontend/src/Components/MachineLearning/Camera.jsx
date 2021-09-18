@@ -2,8 +2,8 @@ import * as faceapi from "face-api.js";
 import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 
+import doPrediction from "./doModelThings";
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import { model } from "@tensorflow/tfjs";
 import { loadSsdMobilenetv1Model } from "face-api.js";
 
 const videoConstraints = {
@@ -17,13 +17,13 @@ const CameraComponent = () => {
 
   const [imageSrc, setImgSrc] = useState(null);
   const [increment, setIncrement] = useState(0);
-  const [data, setData] = useState(null);
-  const [model, setModel] = useState();
+  const [focus, setFocus] = useState(null);
+  const [myModel, setMyModel] = useState();
 
   async function loadModel() {
     try {
-      const model = await tf.loadLayersModel("/Models/attn_model.json");
-      setModel(model);
+      const addModel = await tf.loadLayersModel("/Models/attn_model.json");
+      setMyModel(addModel);
       console.log("loaded model?");
     } catch (err) {
       console.log(err);
@@ -58,7 +58,12 @@ const CameraComponent = () => {
       .detectAllFaces(loadedImg, new faceapi.TinyFaceDetectorOptions())
       .withFaceLandmarks(true);
 
-    if (data === undefined || data === null || data.length === 0) {
+    if (
+      data === undefined ||
+      data === null ||
+      data.length === 0 ||
+      myModel === undefined
+    ) {
     } else {
       let landmarks;
       try {
@@ -75,13 +80,17 @@ const CameraComponent = () => {
       }
 
       let test = [4, 5, 6, 77, 8, 52];
-      console.log(test);
-      console.log(flat_landmarks);
+      // console.log(test);
+      // console.log(flat_landmarks);
+
+      let data_tensor = tf.tensor2d(flat_landmarks, [1, 136]);
 
       try {
-        let attn_pred = await model.predict([4.3]);
+        let attn_pred = await doPrediction(myModel, data_tensor);
         console.log(attn_pred);
-        setData(data);
+        attn_pred = Math.random() < 0.5;
+        sendData(attn_pred);
+        setFocus(attn_pred);
       } catch (err) {
         console.log(err);
       }
@@ -98,37 +107,29 @@ const CameraComponent = () => {
     return () => clearInterval(interval);
   });
 
-  const sendData = (e, isFocus, theData) => {
-    if (theData !== null) {
-      theData.push({ isFocus: isFocus });
-      fetch("http://localhost:5000/API/send_ML_data", {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        contentType: "application/JSON",
-        body: JSON.stringify(theData),
-      });
+  const sendData = (data) => {
+    fetch("http://localhost:5000/API/push_attention", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      contentType: "application/JSON",
+      body: JSON.stringify(data),
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+
+  const RenderisFocus = () => {
+    if (focus) {
+      return <h1>I am focused</h1>;
+    } else {
+      return <h1>I am not focused.</h1>;
     }
-    setData(null);
   };
 
   return (
     <div>
-      <button
-        onClick={(e) => {
-          sendData(e, true, data);
-        }}
-      >
-        FOCUSED
-      </button>
-      <button
-        onClick={(e) => {
-          sendData(e, false, data);
-        }}
-      >
-        NOT
-      </button>
-
+      <RenderisFocus />
       <Webcam
         audio={false}
         ref={webcamRef}

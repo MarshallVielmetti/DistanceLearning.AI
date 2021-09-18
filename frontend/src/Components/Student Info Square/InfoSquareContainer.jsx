@@ -1,3 +1,4 @@
+import { range } from "face-api.js/build/commonjs/utils";
 import React from "react";
 import styled from "styled-components";
 import StudentInfoSquare from "./StudentInfoSquare";
@@ -14,31 +15,9 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const InfoSquareContainer = () => {
-  return (
-    <Container>
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-      <StudentInfoSquare />
-    </Container>
-  );
+const InfoSquareContainer = (data) => {
+  const infoSquares = () => {};
+  return <Container>{infoSquares}</Container>;
 };
 
 export default InfoSquareContainer;

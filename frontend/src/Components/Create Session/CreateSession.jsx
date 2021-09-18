@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -37,6 +38,7 @@ const NameTextbox = styled.input`
 `;
 
 const CreateSession = () => {
+  const history = useHistory("");
   const [className, setClassName] = useState("");
 
   useEffect(() => {
@@ -45,7 +47,12 @@ const CreateSession = () => {
   }, []);
 
   const CreateClass = async () => {
-    console.log("CREATING CLAS");
+    fetch("http://localhost:5000/API/create_class", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+    });
+    history.push("/teacher/class");
   };
 
   return (
