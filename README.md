@@ -1,7 +1,8 @@
-# AlertAIMonorepo
+# DistanceLearning AI monorepo
 
-This projects consists of four major components, a ReactJS frontend, ExpressJS backend, Flask API, and MongoDB atlas connection.
+This projects consists of three major components, a ReactJS frontend, ExpressJS backend, and MongoDB atlas connection.
 There are two different ways to run the application in a development environment.
+THIS IS OUT OF DATE SORRY - THE FLASK API NO LONGER EXISTS
 
 ## Getting Started
 
